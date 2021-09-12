@@ -22,8 +22,7 @@ connection.once('open', () => {
 
 let app = express();
 const port= process.env.PORT || 5000;
-// enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
-// so that your API is remotely testable by FCC 
+// enable CORS 
 app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -48,7 +47,6 @@ const storage = multer.diskStorage({
 });
 
 //Endpoint for Uploading the images 
-// i.e. http://localhost:5000/backend/upload
 const upload = multer({ storage: storage });
 app.post("/backend/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded...");
